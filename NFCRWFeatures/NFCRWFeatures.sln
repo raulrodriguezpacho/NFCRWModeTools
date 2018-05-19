@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFCReaderFeature", "NFCReaderFeature\NFCReaderFeature.csproj", "{7D41D056-0831-4DFA-BC1D-9D077DEDDACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFCWriterFeature", "NFCWriterFeature\NFCWriterFeature.csproj", "{AB035377-3302-4D16-A034-4204A337E149}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D41D056-0831-4DFA-BC1D-9D077DEDDACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D41D056-0831-4DFA-BC1D-9D077DEDDACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D41D056-0831-4DFA-BC1D-9D077DEDDACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D41D056-0831-4DFA-BC1D-9D077DEDDACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB035377-3302-4D16-A034-4204A337E149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB035377-3302-4D16-A034-4204A337E149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB035377-3302-4D16-A034-4204A337E149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB035377-3302-4D16-A034-4204A337E149}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0FBFE7F-4C46-4963-A3ED-4EDF3064887E}
+	EndGlobalSection
+EndGlobal

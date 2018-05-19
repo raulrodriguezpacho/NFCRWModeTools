@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NFCWriterTools.App">
+	<Application.Resources>
+
+        <ResourceDictionary>
+
+            <Style x:Key="labelTitleStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="32" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="labelWriteDataStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="frameOptionStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="HeightRequest" Value="28" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="BackgroundColor" Value="#FF550000" />
+                <Setter Property="OutlineColor" Value="Red" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="activityindicatorStyle" TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="#FFFFFFFF" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="100" />
+            </Style>
+
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

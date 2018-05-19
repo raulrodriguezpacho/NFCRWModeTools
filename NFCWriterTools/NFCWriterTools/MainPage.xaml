@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NFCWriterTools"
+             xmlns:converters="clr-namespace:NFCWriterTools.Converters"
+             x:Class="NFCWriterTools.MainPage" BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolInvertConverter x:Key="BoolInvertConverter" />
+            <converters:BusyToOpacityConverter x:Key="BusyToOpacityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid>
+
+            <StackLayout Opacity="{Binding IsBusy, Converter={StaticResource BusyToOpacityConverter}}">
+
+                <Label Text="NFC Tools - Writer" Style="{StaticResource labelTitleStyle}" />
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" BackgroundColor="White" Margin="0,10" />
+
+                <Label Text="{Binding AbsoluteUriData}" Style="{StaticResource labelWriteDataStyle}" />
+                <Frame Style="{StaticResource frameOptionStyle}" IsEnabled="{Binding IsBusy, Converter={StaticResource BoolInvertConverter}}">
+                    <Frame.HasShadow>
+                        <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>
+                    </Frame.HasShadow>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding WriteAbsoluteUriCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid HorizontalOptions="Center">
+                        <Label Text="Write Absolute Uri" Style="{StaticResource labelWriteDataStyle}" />
+                    </Grid>
+                </Frame>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="White" Margin="0,10" />
+
+                <Label Text="{Binding ApplicationData}" Style="{StaticResource labelWriteDataStyle}" />
+                <Frame Style="{StaticResource frameOptionStyle}" IsEnabled="{Binding IsBusy, Converter={StaticResource BoolInvertConverter}}">
+                    <Frame.HasShadow>
+                        <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>
+                    </Frame.HasShadow>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding WriteApplicationDataCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid HorizontalOptions="Center">
+                        <Label Text="Write Application" Style="{StaticResource labelWriteDataStyle}" />
+                    </Grid>
+                </Frame>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="White" Margin="0,10" />
+
+                <Label Text="{Binding MimeCardData}" Style="{StaticResource labelWriteDataStyle}" />
+                <Frame Style="{StaticResource frameOptionStyle}" IsEnabled="{Binding IsBusy, Converter={StaticResource BoolInvertConverter}}">
+                    <Frame.HasShadow>
+                        <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>
+                    </Frame.HasShadow>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding WriteMimeCardDataCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid HorizontalOptions="Center">
+                        <Label Text="Write Mime Card" Style="{StaticResource labelWriteDataStyle}" />
+                    </Grid>
+                </Frame>
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="White" Margin="0,10" />
+
+                <Label Text="{Binding MimeJsonData}" Style="{StaticResource labelWriteDataStyle}" />
+                <Frame Style="{StaticResource frameOptionStyle}" IsEnabled="{Binding IsBusy, Converter={StaticResource BoolInvertConverter}}">
+                    <Frame.HasShadow>
+                        <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>
+                    </Frame.HasShadow>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding WriteMimeJsonDataCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid HorizontalOptions="Center">
+                        <Label Text="Write Mime Json" Style="{StaticResource labelWriteDataStyle}" />
+                    </Grid>
+                </Frame>
+
+            </StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Style="{StaticResource activityindicatorStyle}"/>
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>
