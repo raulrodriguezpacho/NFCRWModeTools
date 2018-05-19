@@ -35,7 +35,6 @@
                 <Setter Property="Color" Value="#FFFFFFFF" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="HeightRequest" Value="100" />
             </Style>
 
         </ResourceDictionary>

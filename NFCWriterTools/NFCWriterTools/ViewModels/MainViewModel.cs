@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using NFCWriterTools.Model;
-using NFCWriterTools.Services;
 using Plugin.NFCWriterFeature;
 using System;
 using System.Collections.Generic;
