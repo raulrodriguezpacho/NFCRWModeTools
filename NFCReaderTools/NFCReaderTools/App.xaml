@@ -33,7 +33,7 @@
                 <Setter Property="WidthRequest" Value="200" />
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="BackgroundColor" Value="#FF000055" />
-                <Setter Property="OutlineColor" Value="Red" />
+                <Setter Property="OutlineColor" Value="#FF0000FF" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>

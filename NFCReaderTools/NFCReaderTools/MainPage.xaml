@@ -11,6 +11,13 @@
             <converters:BusyToOpacityConverter x:Key="BusyToOpacityConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="Android, UWP">0</On>
+            <On Platform="iOS">0,20,0,0</On>
+        </OnPlatform>
+    </ContentPage.Padding>
     
     <ContentPage.Content>
         
@@ -34,7 +41,7 @@
                 </Frame>
                 <Label Text="{Binding DataRead}" Style="{StaticResource labelReadDataStyle}" />
 
-                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" BackgroundColor="#FFFFFFFF" Margin="0,10" />
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" BackgroundColor="#FFFFFFFF" Margin="0,2" />
                 <Frame Style="{StaticResource frameOptionStyle}">
                     <Frame.HasShadow>
                         <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>

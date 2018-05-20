@@ -31,13 +31,17 @@ namespace NFCReaderTools.Droid.Services
                 {
                     Ssid = formattedSsid,
                     PreSharedKey = formattedPassword
-                };
-                var addNetwork = wifiManager.AddNetwork(wifiConfig);
-                var network = wifiManager.ConfiguredNetworks.FirstOrDefault(n => n.Ssid == ssid);
-                if (network != null)
-                    ret = true;                    
+                };               
+                var network = wifiManager.ConfiguredNetworks.FirstOrDefault(n => n.Ssid == formattedSsid);
+                if (network == null)
+                { 
+                    var addNetwork = wifiManager.AddNetwork(wifiConfig);
+                }                    
+                wifiManager.Disconnect();
+                var enableNetwork = wifiManager.EnableNetwork(network.NetworkId, true);
+                ret = true;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { }            
             return ret;
         }
     }
