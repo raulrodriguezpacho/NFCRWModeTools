@@ -64,7 +64,7 @@ namespace NFCWriterTools.ViewModels
                 MessagingCenter.Subscribe<string>(this, "result", (result) =>
                 {
                     IsBusy = false;
-                    ShowMessage("Write Data Result:", result.ToString(), "ok");
+                    ShowMessage("Data written?", result.ToString(), "ok");
                 });
             }
         }        

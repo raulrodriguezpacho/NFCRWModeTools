@@ -11,6 +11,7 @@
             <converters:BusyToOpacityConverter x:Key="BusyToOpacityConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <ContentPage.Content>
 
         <Grid>
