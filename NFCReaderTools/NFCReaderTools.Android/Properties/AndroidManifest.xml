@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.NFCReaderTools">
 	<uses-sdk android:minSdkVersion="15" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   <uses-permission android:name="android.permission.NFC" />
   <uses-feature android:name="android.hardware.nfc" android:required="true" />
 	<application android:label="NFCReaderTools.Android">
-    <activity android:name="MainActivity">
+    <activity android:name="MainActivity">      
+      <intent-filter>
+        <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+        <category android:name="android.intent.category.DEFAULT" />        
+        <data android:scheme="http"
+            android:host="www.raulrodriguezpacho.com"
+            android:pathPrefix="" />
+      </intent-filter>
       <intent-filter>
         <action android:name="android.nfc.action.NDEF_DISCOVERED" />
         <category android:name="android.intent.category.DEFAULT" />
         <data android:mimeType="application/json" />
       </intent-filter>
       <intent-filter>
-        <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <data android:scheme="http"
-            android:host="www.raulrodriguezpacho.com"
-            android:pathPrefix="" />
+        <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.nfc.action.TAG_DISCOVERED"/>
       </intent-filter>
     </activity>
   </application>

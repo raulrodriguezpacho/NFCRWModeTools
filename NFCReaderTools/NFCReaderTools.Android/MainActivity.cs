@@ -12,13 +12,17 @@ using Android.Content;
 using Android.Nfc.Tech;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using Xamarin.Forms;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace NFCReaderTools.Droid
 {
-    [Activity(Label = "NFCReaderTools", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "NFCReaderTools", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait, LaunchMode = LaunchMode.SingleTop)]    
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         private bool _isNFCCapable = false;
+        private StringBuilder _data = new StringBuilder();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -42,20 +46,37 @@ namespace NFCReaderTools.Droid
                 {
                     case NfcAdapter.ActionNdefDiscovered:
                     case NfcAdapter.ActionTagDiscovered:
-                        IParcelable[] rawMessages = intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
-                        if (rawMessages != null)
+                        _data?.Clear();
+                        MessagingCenter.Send<string>(true.ToString(), "reading");                        
+                        try
+                        {                            
+                            IParcelable[] rawMessages = intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
+                            if (rawMessages != null)
+                            {
+                                NdefMessage[] messages = new NdefMessage[rawMessages.Length];
+                                for (int i = 0; i < rawMessages.Length; i++)
+                                {
+                                    messages[i] = (NdefMessage)rawMessages[i];
+                                }
+                                // Process the messages array..
+                                foreach (var m in messages)
+                                {
+                                    NdefRecord[] records = m.GetRecords();
+                                    foreach (var r in records)
+                                    {
+                                        ReadData(r.GetPayload());
+                                    }
+                                }
+                                if (_data.ToString().Length > 0)
+                                {                                    
+                                    MessagingCenter.Send<string>(_data.ToString(), "data");
+                                }
+                            }
+                        }
+                        catch { }
+                        finally
                         {
-                            NdefMessage[] messages = new NdefMessage[rawMessages.Length];
-                            for (int i = 0; i < rawMessages.Length; i++)
-                            {
-                                messages[i] = (NdefMessage)rawMessages[i];
-                            }
-                            // Process the messages array..
-                            foreach (var m in messages)
-                            {
-                                NdefRecord[] record = m.GetRecords();
-
-                            }
+                            MessagingCenter.Send<string>(false.ToString(), "reading");
                         }
                         break;
                     case NfcAdapter.ActionTechDiscovered:
@@ -68,7 +89,7 @@ namespace NFCReaderTools.Droid
 
         protected override void OnPause()
         {
-            base.OnPause();
+            base.OnPause();            
             ((NfcAdapter)CrossNFCReaderFeature.Current.Adapter)?.DisableForegroundDispatch(this);
         }
 
@@ -88,6 +109,15 @@ namespace NFCReaderTools.Droid
                     string[][] techLists = new string[][] { new string[] { typeof(Ndef).Name, typeof(NdefFormatable).Name } };
                     ((NfcAdapter)CrossNFCReaderFeature.Current.Adapter)?.EnableForegroundDispatch(this, pendingIntent, intentFilters, techLists);
                 }
+            }
+            catch { }
+        }
+
+        private void ReadData(byte[] payload)
+        {
+            try
+            {                
+                _data?.AppendLine(Encoding.UTF8.GetString(payload));
             }
             catch { }
         }

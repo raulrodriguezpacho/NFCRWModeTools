@@ -2,10 +2,58 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NFCReaderTools"
-             x:Class="NFCReaderTools.MainPage">
+             xmlns:converters="clr-namespace:NFCReaderTools.Converters"
+             x:Class="NFCReaderTools.MainPage" BackgroundColor="White">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolInvertConverter x:Key="BoolInvertConverter" />
+            <converters:BusyToOpacityConverter x:Key="BusyToOpacityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        
+        <Grid>
 
-	<Label Text="READER" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+            <StackLayout Opacity="{Binding IsBusy, Converter={StaticResource BusyToOpacityConverter}}">
+
+                <Label Text="NFC Tools - Reader" Style="{StaticResource labelTitleStyle}" />
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" BackgroundColor="#FF000055" Margin="0,10" />
+
+                <Frame Style="{StaticResource frameOptionStyle}">
+                    <Frame.HasShadow>
+                        <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>
+                    </Frame.HasShadow>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClearDataCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid HorizontalOptions="Center">
+                        <Label Text="Data read.." Style="{StaticResource labelReadStyle}" />
+                    </Grid>
+                </Frame>
+                <Label Text="{Binding DataRead}" Style="{StaticResource labelReadDataStyle}" />
+
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" BackgroundColor="#FFFFFFFF" Margin="0,10" />
+                <Frame Style="{StaticResource frameOptionStyle}">
+                    <Frame.HasShadow>
+                        <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>
+                    </Frame.HasShadow>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DoCommand}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid HorizontalOptions="Center">
+                        <Label Text="Do action with data!" Style="{StaticResource labelReadStyle}" />
+                    </Grid>
+                </Frame>
+                <Label Text="{Binding DoResult}" Style="{StaticResource labelReadDataStyle}" />
+
+            </StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Style="{StaticResource activityindicatorStyle}"/>
+
+        </Grid>
+
+    </ContentPage.Content>
 
 </ContentPage>
