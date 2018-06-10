@@ -123,6 +123,24 @@ namespace Plugin.NFCWriterFeature
             return writeResult == WriteResult.OK;
         }
 
+        public bool WriteExternalType(string domain, string type, string payload, object tag)
+        {
+            if (!(tag is Tag))
+                return false;
+            if (string.IsNullOrEmpty(domain) || string.IsNullOrEmpty(type) || string.IsNullOrEmpty(payload))
+                return false;
+
+            WriteResult writeResult = WriteResult.FAILED;
+            try
+            {                                
+                NdefRecord extRecord = NdefRecord.CreateExternal(domain, type, Encoding.UTF8.GetBytes(payload));
+                NdefMessage ndefMessage = new NdefMessage(new NdefRecord[] { extRecord });
+                writeResult = WriteTag(ndefMessage, (Tag)tag);
+            }
+            catch { }
+            return writeResult == WriteResult.OK;
+        }
+
         public bool WriteMimeMedia(string mimeType, byte[] mimeData, object tag)
         {
             if (!(tag is Tag))

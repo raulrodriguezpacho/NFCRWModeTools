@@ -11,6 +11,7 @@ namespace Plugin.NFCWriterFeature
         bool WriteAbsoluteUri(string uri, object tag);
         void WriteEmpty();
         bool WriteExternalType(string pathPrefix, string payload, object tag);
+        bool WriteExternalType(string domain, string type, string payload, object tag);
         bool WriteMimeMedia(string mimeType, byte[] mimeData, object tag);
         void WriteUnchanged();
         void WriteUnknown();

@@ -36,6 +36,11 @@ namespace Plugin.NFCWriterFeature
             throw new NotImplementedException();
         }
 
+        public bool WriteExternalType(string domain, string type, string payload, object tag)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool WriteMimeMedia(string mimeType, byte[] mimeData, object tag)
         {
             throw new NotImplementedException();
@@ -52,6 +57,11 @@ namespace Plugin.NFCWriterFeature
         }
 
         public void WriteWellKnown()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool WriteWellKnown(RecordTypeDefinition type, string content, object tag)
         {
             throw new NotImplementedException();
         }
