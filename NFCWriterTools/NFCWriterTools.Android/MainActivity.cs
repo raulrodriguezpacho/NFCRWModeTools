@@ -60,6 +60,10 @@ namespace NFCWriterTools.Droid
                         case WriteDataType.MimeJson:                            
                             result = CrossNFCWriterFeature.Current.WriteMimeMedia("application/json", Encoding.UTF8.GetBytes(_data.Content), tag);
                             break;
+                        case WriteDataType.ExternalType:
+                            result = CrossNFCWriterFeature.Current.WriteExternalType("nfcreadertools.rrp.com:myowntype", _data.Content, tag);
+                            //result = CrossNFCWriterFeature.Current.WriteExternalType("nfcreadertools.rrp.com", "myowntype", _data.Content, tag);
+                            break;
                     }
                     MessagingCenter.Send<string>(result.ToString(), "result");
                 }

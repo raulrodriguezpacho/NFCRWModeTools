@@ -15,6 +15,7 @@ namespace NFCWriterTools.Model
         AbsoluteUri,        
         Aplication,
         MimeCard,
-        MimeJson
+        MimeJson,
+        ExternalType
     };
 }
