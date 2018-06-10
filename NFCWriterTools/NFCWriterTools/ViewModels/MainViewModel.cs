@@ -10,6 +10,12 @@ using Xamarin.Forms;
 
 namespace NFCWriterTools.ViewModels
 {
+    public class MyOwnData
+    {
+        public Guid MyOwnId { get; set; }
+        public string MyOwnDescription { get; set; }
+    }
+
     public class MainViewModel : ViewModelBase
     {        
         public string AbsoluteUriData
@@ -17,10 +23,10 @@ namespace NFCWriterTools.ViewModels
             get { return "http://www.raulrodriguezpacho.com"; }            
         }
 
-        //"es.aeat.pin24h" //raul.PalentinoROM_Android //com.rrp.EveryCent //com.oxylane.android.decathlon //com.skype.raider //es.aeat.pin24h
+        // package
         public string ApplicationData
         {
-            get { return "com.oxylane.android.decathlon"; }
+            get { return "raul.PalentinoROM_Android"; }
         }
 
         public string MimeCardData
@@ -33,11 +39,12 @@ namespace NFCWriterTools.ViewModels
                     .AppendLine("VERSION:3.0")
                     .AppendLine("N:Rodríguez Pacho;Raúl;;;")
                     .AppendLine("FN:Raúl Rodríguez Pacho")
-                    .AppendLine("TEL;TYPE=CELL:+34 654 70 01 24")
-                    .AppendLine("EMAIL:raulrodriguezpacho@gmail.com")
-                    .AppendLine("PHOTO;TYPE=JPEG;VALUE=URI:http://www.raulrodriguezpacho.com/perfil.jpg")
+                    .AppendLine("TEL;TYPE=CELL:+34 123 45 67 89")
+                    .AppendLine("EMAIL:myemail@mydomain.com")                    
                     .AppendLine("URL:http://www.raulrodriguezpacho.com")
                     .AppendLine("TITLE:Xamarin Developer & Professional Certified")
+                    .AppendLine("ORG:Software Development")
+                    .AppendLine("NOTE:Mobile - AR/VR/MR - AI Machine Learning & Deep Learning")
                     .AppendLine("END:VCARD")
                     .ToString();
             }
@@ -50,10 +57,23 @@ namespace NFCWriterTools.ViewModels
                 return
                     new JObject
                     {
-                        { "ssid", "MOVISTAR_71D2" },
-                        { "password", "V0y a mi Air3" }
+                        { "ssid", "YOUR_SSID" },
+                        { "password", "yOuRwIfIpAsSwOrD" }
                     }
                     .ToString();                
+            }
+        }
+
+        public MyOwnData ExternalData
+        {
+            get
+            {
+                return
+                    new MyOwnData
+                    {
+                        MyOwnId = Guid.NewGuid(),
+                        MyOwnDescription = "Xamarin Forms and what to do with NFC tags.."
+                    };
             }
         }
 
@@ -135,6 +155,24 @@ namespace NFCWriterTools.ViewModels
                     {
                         Content = MimeJsonData,
                         Type = WriteDataType.MimeJson
+                    };
+                    MessagingCenter.Send<WriteData>(data, "data");
+                }));
+            }
+        }
+
+        private ICommand _writeExternalTypeCommand;
+        public ICommand WriteExternalTypeCommand
+        {
+            get
+            {
+                return _writeExternalTypeCommand ?? (_writeExternalTypeCommand = new Command(() =>
+                {
+                    IsBusy = true;
+                    var data = new WriteData()
+                    {
+                        Content = JObject.FromObject(ExternalData).ToString(),
+                        Type = WriteDataType.ExternalType
                     };
                     MessagingCenter.Send<WriteData>(data, "data");
                 }));

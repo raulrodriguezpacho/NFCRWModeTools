@@ -27,6 +27,11 @@
 
                 <Label Text="NFC Tools - Reader" Style="{StaticResource labelTitleStyle}" />
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" BackgroundColor="#FF000055" Margin="0,10" />
+                
+                <Label Text="Place the mobile near the NFC tag.." Style="{StaticResource labelReadDataStyle}" />
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#FF000055" Margin="0,2" />
+                <Label Text="{Binding DataRead}" Style="{StaticResource labelReadDataStyle}" Margin="10" />
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="#FF000055" Margin="0,2" />
 
                 <Frame Style="{StaticResource frameOptionStyle}">
                     <Frame.HasShadow>
@@ -36,12 +41,10 @@
                         <TapGestureRecognizer Command="{Binding ClearDataCommand}"/>
                     </Frame.GestureRecognizers>
                     <Grid HorizontalOptions="Center">
-                        <Label Text="Data read.." Style="{StaticResource labelReadStyle}" />
+                        <Label Text="Clear data read" Style="{StaticResource labelReadStyle}" />
                     </Grid>
                 </Frame>
-                <Label Text="{Binding DataRead}" Style="{StaticResource labelReadDataStyle}" />
 
-                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" BackgroundColor="#FFFFFFFF" Margin="0,2" />
                 <Frame Style="{StaticResource frameOptionStyle}">
                     <Frame.HasShadow>
                         <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True"/>
