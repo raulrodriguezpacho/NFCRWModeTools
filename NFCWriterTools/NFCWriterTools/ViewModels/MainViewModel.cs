@@ -20,7 +20,7 @@ namespace NFCWriterTools.ViewModels
     {        
         public string AbsoluteUriData
         {
-            get { return "http://www.raulrodriguezpacho.com"; }            
+            get { return "http://www.raulrodriguezpacho.com"; }     
         }
 
         // package
@@ -39,8 +39,8 @@ namespace NFCWriterTools.ViewModels
                     .AppendLine("VERSION:3.0")
                     .AppendLine("N:Rodríguez Pacho;Raúl;;;")
                     .AppendLine("FN:Raúl Rodríguez Pacho")
-                    .AppendLine("TEL;TYPE=CELL:+34 123 45 67 89")
-                    .AppendLine("EMAIL:myemail@mydomain.com")                    
+                    .AppendLine("TEL;TYPE=CELL:+34 654 700 124")
+                    .AppendLine("EMAIL:raulrodriguezpacho@gmail.com")                    
                     .AppendLine("URL:http://www.raulrodriguezpacho.com")
                     .AppendLine("TITLE:Xamarin Developer & Professional Certified")
                     .AppendLine("ORG:Software Development")
