@@ -39,7 +39,7 @@ namespace NFCWriterTools.ViewModels
                     .AppendLine("VERSION:3.0")
                     .AppendLine("N:Rodríguez Pacho;Raúl;;;")
                     .AppendLine("FN:Raúl Rodríguez Pacho")
-                    .AppendLine("TEL;TYPE=CELL:+34 654 700 124")
+                    .AppendLine("TEL;TYPE=CELL:+34 123 456 789")
                     .AppendLine("EMAIL:raulrodriguezpacho@gmail.com")                    
                     .AppendLine("URL:http://www.raulrodriguezpacho.com")
                     .AppendLine("TITLE:Xamarin Developer & Professional Certified")
